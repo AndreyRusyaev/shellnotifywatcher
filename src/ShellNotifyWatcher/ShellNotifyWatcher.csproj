@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>ShellNotifyWatcher</AssemblyName>
+        <Nullable>enable</Nullable>
+        <Description>Implements shell notifications watcher (SHChangeNotify &amp; SHCNE_ events).</Description>
+        <Copyright>Andrey Rusyaev</Copyright>
+        <Authors>Andrey Rusyaev</Authors>
+        <RepositoryUrl>https://github.com/AndreyRusyaev/shellnotifywatcher</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>windows win32 shell shchangenotify events</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <WarningsAsErrors />
+    </PropertyGroup>
+</Project>
