@@ -27,6 +27,7 @@ namespace ShellSpy
 
         public ShellNotifyWatcher()
         {
+            IncludeShellNotifications = true;
             EventFilters = ShellEventFilters.AllEvents;
         }
 
@@ -90,6 +91,8 @@ namespace ShellSpy
         }
 
         public bool Recursive { get; set; }
+
+        public bool IncludeShellNotifications { get; set; }
 
         public ShellEventFilters EventFilters { get; set; }
 
@@ -158,13 +161,8 @@ namespace ShellSpy
 
         private void RunMessageLoop(CancellationToken cancellationToken)
         {
-            if (ItemIdList == null)
-            {
-                throw new InvalidOperationException("ItemIdList should be set");
-            }
-
             using var notifyWindow = 
-                new ShellChangeNotifyWindow(ItemIdList, Recursive, ToSHCNE(EventFilters));
+                new ShellChangeNotifyWindow(ItemIdList, Recursive, IncludeShellNotifications, ToSHCNE(EventFilters));
 
             notifyWindow.ShellChanged += OnShellChanged;
 

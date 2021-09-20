@@ -13,28 +13,44 @@ namespace ShellSpy.ChangeNotify
 
         private readonly int changeNotifyRegistrationId;
 
-        public ShellChangeNotifyWindow(ItemIdList itemIdList, bool recursive, Shell32.SHCNE notifyFilters) 
+        public ShellChangeNotifyWindow(
+            ItemIdList? itemIdList,
+            bool recursive,
+            bool includeShellNotifications,
+            Shell32.SHCNE notifyFilters) 
             : base("ShellChangeNotifyWindow")
         {
-            ItemIdList = itemIdList.Clone();
+            ItemIdList = itemIdList != null ? itemIdList.Clone() : null;
             Recursive = recursive;
+            IncludeShellNotifications = includeShellNotifications;
             NotifyFilters = notifyFilters;
-
+            
             var changeNotifyEntries = new[]
             {
                 new Shell32.SHChangeNotifyEntry
                 {
-                    pidl = ItemIdList.DangerousGetHandle(),
+                    pidl = ItemIdList != null ? ItemIdList.DangerousGetHandle() : IntPtr.Zero,
                     fRecursive = Recursive
                 }
             };
 
+            // Shell level notifications are from Shell Views/Folders
+            // Interrupt level notifications are from FindFirstChangeNotification
+            Shell32.SHCNRF notifySources = Shell32.SHCNRF.SHCNRF_InterruptLevel;
+            if (recursive)
+            {
+                // Have similar meaning as FindFirstChangeNotification(lpPathName, bWatchSubtree = TRUE, dwNotifyFilter)
+                notifySources |= Shell32.SHCNRF.SHCNRF_RecursiveInterrupt;
+            }
+
+            if (includeShellNotifications)
+            {
+                notifySources |= Shell32.SHCNRF.SHCNRF_ShellLevel;
+            }
+
             changeNotifyRegistrationId = Shell32.SHChangeNotifyRegister(
                     WindowHandle,
-                    Shell32.SHCNRF.SHCNRF_ShellLevel
-                        | Shell32.SHCNRF.SHCNRF_InterruptLevel
-                        | Shell32.SHCNRF.SHCNRF_NewDelivery
-                        | Shell32.SHCNRF.SHCNRF_RecursiveInterrupt,
+                    notifySources | Shell32.SHCNRF.SHCNRF_NewDelivery,
                     notifyFilters,
                     WM_CHANGENOTIFY,
                     changeNotifyEntries.Length,
@@ -48,11 +64,13 @@ namespace ShellSpy.ChangeNotify
 
         public event EventHandler<ShellChangeNotifyEventArgs>? ShellChanged;
 
-        public ItemIdList ItemIdList { get; }
+        public ItemIdList? ItemIdList { get; }
 
         public bool Recursive { get; }
 
         public Shell32.SHCNE NotifyFilters { get; }
+
+        public bool IncludeShellNotifications { get; }
 
         protected override IntPtr OnMessageReceived(WindowMessage message)
         {
@@ -91,7 +109,7 @@ namespace ShellSpy.ChangeNotify
                 }
             }
 
-            ItemIdList.Dispose();
+            ItemIdList?.Dispose();
         }
     }
 }
