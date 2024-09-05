@@ -11,7 +11,7 @@ namespace ShellSpy.NativeWindows
         private readonly NativeWindowClass windowClass;
 
         public NativeWindow(IntPtr parentWindowHandle, string windowName)
-            : this(Kernel32.GetModuleHandle(null), parentWindowHandle, windowName)
+            : this(Kernel32.GetModuleHandleW(null), parentWindowHandle, windowName)
         {
         }
 
@@ -48,15 +48,15 @@ namespace ShellSpy.NativeWindows
 
         private IntPtr DefWindowProc(WindowMessage message)
         {
-            return User32.DefWindowProc(message.WindowHandle,
-                                        message.Id,
-                                        message.WParam,
-                                        message.LParam);
+            return User32.DefWindowProcW(message.WindowHandle,
+                                         message.Id,
+                                         message.WParam,
+                                         message.LParam);
         }
 
         public void Close()
         {
-            if (!User32.PostMessage(WindowHandle, (uint)WindowMessages.WM_CLOSE, IntPtr.Zero, IntPtr.Zero))
+            if (!User32.PostMessageW(WindowHandle, (uint)WindowMessages.WM_CLOSE, IntPtr.Zero, IntPtr.Zero))
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }

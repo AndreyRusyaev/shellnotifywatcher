@@ -16,7 +16,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// <param name="wParam">Additional message information. The content of this parameter depends on the value of the Msg parameter.</param>
         /// <param name="lParam">Additional message information. The content of this parameter depends on the value of the Msg parameter.</param>
         /// <returns>The return value is the result of the message processing and depends on the message.</returns>
-        [DllImport("User32.dll")]
-        public static extern IntPtr DefWindowProc(IntPtr hWnd, int uMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("User32.dll", ExactSpelling = true)]
+        public static extern IntPtr DefWindowProcW(IntPtr hWnd, int uMsg, IntPtr wParam, IntPtr lParam);
     }
 }

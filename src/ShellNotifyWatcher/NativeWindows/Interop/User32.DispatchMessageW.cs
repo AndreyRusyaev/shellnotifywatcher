@@ -12,7 +12,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// <returns>The return value specifies the value returned by the window procedure.
         /// Although its meaning depends on the message being dispatched, 
         /// the return value generally is ignored.</returns>
-        [DllImport("User32.dll")]
-        public static extern int DispatchMessage([In] ref MSG lpMsg);
+        [DllImport("User32.dll", ExactSpelling = true)]
+        public static extern int DispatchMessageW([In] ref MSG lpMsg);
     }
 }

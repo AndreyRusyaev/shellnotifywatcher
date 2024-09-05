@@ -22,7 +22,7 @@ namespace ShellSpy.ChangeNotify.Interop
         /// This will also load new icon and thumbnail handlers that have been registered. 
         /// Note, however, that icon overlay handlers are not reloaded.
         /// The strings pointed to by dwItem1 and dwItem2 can be either ANSI or Unicode.</remarks>
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", ExactSpelling = true)]
         public static extern void SHChangeNotify(SHCNE wEventId, SHCNF dwFlags, IntPtr dwItem1, IntPtr dwItem2);
     }
 }

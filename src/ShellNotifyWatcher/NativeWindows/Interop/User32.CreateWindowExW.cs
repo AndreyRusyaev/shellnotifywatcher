@@ -71,8 +71,8 @@ namespace ShellSpy.NativeWindows.Interop
         /// lpParam should point to a MDICREATESTRUCT structure.lpParam may be NULL if no additional data is needed.</param>
         /// <returns>If the function succeeds, the return value is a handle to the new window.
         /// If the function fails, the return value is NULL.To get extended error information, call GetLastError.</returns>
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern IntPtr CreateWindowEx(
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern IntPtr CreateWindowExW(
             int dwExStyle,
             string lpClassName,
             string lpWindowName,

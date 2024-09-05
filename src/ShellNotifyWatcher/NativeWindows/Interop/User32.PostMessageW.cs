@@ -26,7 +26,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// If the function fails, the return value is zero.To get extended error information, 
         /// call GetLastError.GetLastError returns ERROR_NOT_ENOUGH_QUOTA when the limit is hit.</returns>
 
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern bool PostMessage(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern bool PostMessageW(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
     }
 }

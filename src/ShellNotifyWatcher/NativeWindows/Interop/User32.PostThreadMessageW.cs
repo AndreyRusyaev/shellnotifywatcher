@@ -30,7 +30,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// or if the thread specified by idThread does not have a message queue.
         /// GetLastError returns ERROR_NOT_ENOUGH_QUOTA when the message limit is hit.
         /// </returns>
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern bool PostThreadMessage(int idThread, int uMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern bool PostThreadMessageW(int idThread, int uMsg, IntPtr wParam, IntPtr lParam);
     }
 }

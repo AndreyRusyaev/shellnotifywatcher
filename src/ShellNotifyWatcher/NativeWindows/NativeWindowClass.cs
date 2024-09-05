@@ -30,7 +30,7 @@ namespace ShellSpy.NativeWindows
                 hInstance = hInstance
             };
 
-            classRegistrationAtom = User32.RegisterClassEx(ref wndClass);
+            classRegistrationAtom = User32.RegisterClassExW(ref wndClass);
             if (classRegistrationAtom == 0)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -41,7 +41,7 @@ namespace ShellSpy.NativeWindows
 
         public IntPtr CreateWindow(IntPtr hParentWindow, string windowName)
         {
-            var hWindow = User32.CreateWindowEx(
+            var hWindow = User32.CreateWindowExW(
                 0,
                 Name,
                 windowName,
@@ -67,7 +67,7 @@ namespace ShellSpy.NativeWindows
         {
             if (!isDisposed)
             {
-                if (!User32.UnregisterClass(new IntPtr(classRegistrationAtom), hInstance))
+                if (!User32.UnregisterClassW(new IntPtr(classRegistrationAtom), hInstance))
                 {
                     throw new Win32Exception(Marshal.GetLastWin32Error());
                 }

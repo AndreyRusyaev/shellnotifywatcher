@@ -32,7 +32,7 @@ namespace ShellSpy.ChangeNotify.Interop
         /// if a large number of SHCNE_UPDATEITEM notifications are generated for files in the same folder, 
         /// they can be joined into a single SHCNE_UPDATEDIR notification.
         /// </remarks>
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", ExactSpelling = true)]
         public static extern int SHChangeNotifyRegister(
               IntPtr hwnd,
               SHCNRF fSources,

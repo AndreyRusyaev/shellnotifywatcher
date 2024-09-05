@@ -25,10 +25,10 @@ namespace ShellSpy.NativeWindows.Interop
         /// Class atoms are special atoms returned only by RegisterClass and RegisterClassEx.
         /// No window classes registered by a DLL are unregistered when the .dll is unloaded.
         /// </remarks>
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern bool UnregisterClass(string lpClassName, IntPtr hInstance);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern bool UnregisterClassW(string lpClassName, IntPtr hInstance);
 
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern bool UnregisterClass(IntPtr lpClassName, IntPtr hInstance);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern bool UnregisterClassW(IntPtr lpClassName, IntPtr hInstance);
     }
 }
