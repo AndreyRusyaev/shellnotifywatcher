@@ -10,7 +10,7 @@ namespace ShellSpy.Common.Interop
         /// </summary>
         /// <param name="pidl">A pointer to the full, or absolute, ITEMIDLIST structure to be cloned.</param>
         /// <returns>A pointer to a copy of the ITEMIDLIST structure pointed to by pidl.</returns>
-        [DllImport("shell32.dll", EntryPoint = "ILClone")]
+        [DllImport("shell32.dll", EntryPoint = "ILClone", ExactSpelling = true)]
         public static extern IntPtr ILCloneFull(IntPtr pidl);
     }
 }

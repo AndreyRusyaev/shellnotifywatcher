@@ -9,7 +9,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// </summary>
         /// <returns>The return value is the thread identifier of the calling thread.</returns>
         /// <remarks>Until the thread terminates, the thread identifier uniquely identifies the thread throughout the system.</remarks>
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", ExactSpelling = true)]
         public static extern int GetCurrentThreadId();
     }
 }

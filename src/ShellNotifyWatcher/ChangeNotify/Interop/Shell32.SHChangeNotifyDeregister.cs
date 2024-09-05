@@ -9,7 +9,7 @@ namespace ShellSpy.ChangeNotify.Interop
         /// </summary>
         /// <param name="ulID">A value of type ULONG that specifies the registration ID returned by SHChangeNotifyRegister.</param>
         /// <returns>Returns TRUE if the specified client was found and removed; otherwise FALSE.</returns>
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", ExactSpelling = true)]
         public static extern bool SHChangeNotifyDeregister(int ulID);
 
     }

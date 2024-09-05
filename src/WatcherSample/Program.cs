@@ -18,7 +18,7 @@ namespace WatcherSample
                 EventFilters = ShellEventFilters.AllEvents
             };
 
-            // Item events
+            // Shell item events
             watcher.ItemChanged += (obj, e) => Console.WriteLine("{0} {1} '{2}'", e.ChangeType, e.ItemType, e.Path);
             watcher.ItemRenamed += (obj, e) => Console.WriteLine("{0} {1} '{2}' -> '{3}'", e.ChangeType, e.ItemType, e.OldPath, e.NewPath);
             watcher.DriveChanged += (obj, e) => Console.WriteLine("{0} '{1}'", e.ChangeType, e.Path);

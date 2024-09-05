@@ -31,10 +31,10 @@ namespace ShellSpy.NativeWindows.Interop
         /// if hWnd is an invalid window handle or lpMsg is an invalid pointer.
         /// To get extended error information, call GetLastError.
         /// </returns>
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern int GetMessage([In, Out] ref MSG lpMsg,
-                                            IntPtr hWnd,
-                                            int wMsgFilterMin,
-                                            int wMsgFilterMax);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern int GetMessageW([In, Out] ref MSG lpMsg,
+                                             IntPtr hWnd,
+                                             int wMsgFilterMin,
+                                             int wMsgFilterMax);
     }
 }

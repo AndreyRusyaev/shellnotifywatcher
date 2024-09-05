@@ -15,7 +15,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// FindWindow, FindWindowEx, and UnregisterClass functions and the IActiveIMMap::FilterClientWindows method.
         /// If the function fails, the return value is zero.To get extended error information, call GetLastError.
         /// </returns>
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern ushort RegisterClassEx(ref WNDCLASSEX lpWndClass);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true, ExactSpelling = true)]
+        public static extern ushort RegisterClassExW(ref WNDCLASSEX lpWndClass);
     }
 }

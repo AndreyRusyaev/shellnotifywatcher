@@ -19,7 +19,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// <returns>If the function succeeds, the return value is nonzero.
         /// If the function fails, the return value is zero.To get extended error information, call GetLastError.
         /// </returns>
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true, ExactSpelling = true)]
         public static extern bool DestroyWindow(IntPtr hWnd);
     }
 }

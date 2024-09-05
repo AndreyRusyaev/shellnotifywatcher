@@ -38,7 +38,7 @@ namespace ShellSpy.NativeWindows
 
             while (true)
             {
-                int result = User32.GetMessage(ref msg, IntPtr.Zero, 0, 0);
+                int result = User32.GetMessageW(ref msg, IntPtr.Zero, 0, 0);
                 if (result == 0)
                 {
                     // Received WM_QUIT
@@ -51,7 +51,7 @@ namespace ShellSpy.NativeWindows
                 }
                 else
                 {
-                    User32.DispatchMessage(ref msg);
+                    User32.DispatchMessageW(ref msg);
                 }
             }
 
@@ -60,7 +60,7 @@ namespace ShellSpy.NativeWindows
 
         private void Stop()
         {
-            if (!User32.PostThreadMessage(threadId, (int) WindowMessages.WM_QUIT, new IntPtr(0), IntPtr.Zero))
+            if (!User32.PostThreadMessageW(threadId, (int) WindowMessages.WM_QUIT, new IntPtr(0), IntPtr.Zero))
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }

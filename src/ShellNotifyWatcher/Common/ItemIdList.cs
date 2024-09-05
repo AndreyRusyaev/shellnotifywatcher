@@ -26,7 +26,7 @@ namespace ShellSpy.Common
 
         public string ToAbsoluteParsingName()
         {
-           uint hResult = Shell32.SHGetNameFromIDList(
+           var hResult = Shell32.SHGetNameFromIDList(
                 handle,
                 Shell32.SIGDN.SIGDN_DESKTOPABSOLUTEPARSING,
                 out string ppszName);
@@ -51,7 +51,12 @@ namespace ShellSpy.Common
 
         public static ItemIdList FromAbsoluteParsingName(string path)
         {
-            Shell32.SHParseDisplayName(path, IntPtr.Zero, out IntPtr ppidl, 0, out _);
+            var hResult = Shell32.SHParseDisplayName(path, IntPtr.Zero, out IntPtr ppidl, 0, out _);
+            if (hResult != 0)
+            {
+                Marshal.ThrowExceptionForHR(hResult);
+            }
+
             return new ItemIdList(ppidl);
         }
 

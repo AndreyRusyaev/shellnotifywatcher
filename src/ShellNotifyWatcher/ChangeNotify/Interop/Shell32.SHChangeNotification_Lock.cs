@@ -18,7 +18,7 @@ namespace ShellSpy.ChangeNotify.Interop
         /// receives the Shell change notification ID of the event that took place.</param>
         /// <returns>Returns a handle (HLOCK) to the locked memory. 
         /// Pass this value to SHChangeNotification_Unlock when finished.</returns>
-        [DllImport("shell32.dll")]
+        [DllImport("shell32.dll", ExactSpelling = true)]
         public static extern SHChangeNotificationLockHandle SHChangeNotification_Lock(
             IntPtr hChange,
             int dwProcId,

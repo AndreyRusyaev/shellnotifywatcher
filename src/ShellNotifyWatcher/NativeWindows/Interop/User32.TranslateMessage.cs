@@ -19,7 +19,7 @@ namespace ShellSpy.NativeWindows.Interop
         /// If the message is not translated (that is, a character message is not posted to the thread's message queue), 
         /// the return value is zero.
         /// </returns>
-        [DllImport("User32.dll")]
+        [DllImport("User32.dll", ExactSpelling = true)]
         public static extern bool TranslateMessage(ref MSG lpMsg);
     }
 }
