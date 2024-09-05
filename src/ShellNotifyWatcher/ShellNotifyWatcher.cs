@@ -336,7 +336,7 @@ namespace ShellSpy
 
                 ExtendedEventOccurred?.Invoke(
                     this,
-                    new ShellExtendedEventNotifyEventArgs(dwordAsIdList.dwItem1));
+                    new ShellExtendedEventNotifyEventArgs(ToShellExtenedEventType(dwordAsIdList.dwItem1)));
             }
             else
             {
@@ -413,6 +413,37 @@ namespace ShellSpy
             }
 
             return shcne;
+        }
+
+        private ShellExtendedEventType ToShellExtenedEventType(int eventType)
+        {
+            switch ((Shell32.SHCNEE)eventType)
+            {
+                case Shell32.SHCNEE.SHCNEE_ORDERCHANGED:
+                    return ShellExtendedEventType.OrderChanged;
+                case Shell32.SHCNEE.SHCNEE_WININETCHANGED:
+                    return ShellExtendedEventType.WinInetChanged;
+                case Shell32.SHCNEE.SHCNEE_MSI_CHANGE:
+                    return ShellExtendedEventType.MsiChange;
+                case Shell32.SHCNEE.SHCNEE_MSI_UNINSTALL:
+                    return ShellExtendedEventType.MsiUninstall;
+                case Shell32.SHCNEE.SHCNEE_PROMOTEDITEM:
+                    return ShellExtendedEventType.PromotedItem;
+                case Shell32.SHCNEE.SHCNEE_DEMOTEDITEM:
+                    return ShellExtendedEventType.DemotedItem;
+                case Shell32.SHCNEE.SHCNEE_ALIASINUSE:
+                    return ShellExtendedEventType.AliasInUse;
+                case Shell32.SHCNEE.SHCNEE_SHORTCUTINVOKE:
+                    return ShellExtendedEventType.ShortcutInvoke;
+                case Shell32.SHCNEE.SHCNEE_PINLISTCHANGED:
+                    return ShellExtendedEventType.PinListChanged;
+                case Shell32.SHCNEE.SHCNEE_USERINFOCHANGED:
+                    return ShellExtendedEventType.UserInfoChanged;
+                case Shell32.SHCNEE.SHCNEE_UPDATEFOLDERLOCATION:
+                    return ShellExtendedEventType.UpdateFolderLocation;
+                default:
+                    return (ShellExtendedEventType)eventType;
+            }
         }
     }
 }

@@ -2,11 +2,11 @@
 {
     public sealed class ShellExtendedEventNotifyEventArgs : ShellNotifyEventArgs
     {
-        public ShellExtendedEventNotifyEventArgs(int eventId)
+        public ShellExtendedEventNotifyEventArgs(ShellExtendedEventType eventId)
         {
             EventId = eventId;
         }
 
-        public int EventId { get; }
+        public ShellExtendedEventType EventId { get; }
     }
 }
