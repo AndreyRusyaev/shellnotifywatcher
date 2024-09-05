@@ -8,19 +8,19 @@ namespace ShellSpy
         None = 0,
 
         /// <summary>
-        /// All item (non-folder) events:
+        /// All shell item (non-folder) events:
         /// SHCNE_CREATE | SHCNE_DELETE | SHCNE_UPDATEITEM | SHCNE_RENAMEITEM
         /// </summary>
         ItemEvents =            1 << 0,
 
         /// <summary>
-        /// All folder events:
+        /// All shell folder events:
         /// SHCNE_MKDIR | SHCNE_RMDIR | SHCNE_UPDATEDIR | SHCNE_RENAMEFOLDER
         /// </summary>
         FolderEvents =          1 << 1,
 
         /// <summary>
-        /// Item attributes changed events:
+        /// Shell item attributes changed events:
         /// SHCNE_ATTRIBUTES
         /// </summary>
         ItemAttributesChanged = 1 << 2,
@@ -38,44 +38,47 @@ namespace ShellSpy
         ShareStatusChanged =    1 << 4,
 
         /// <summary>
-        /// SHCNE_FREESPACE
+        /// Similar to SHCNE_FREESPACE
         /// </summary>
         FreespaceChanged =      1 << 5,
 
         /// <summary>
-        /// SHCNE_SERVERDISCONNECT
+        /// Similar to SHCNE_SERVERDISCONNECT
         /// </summary>
         ServerDisconnected =    1 << 6,
 
         /// <summary>
-        /// SHCNE_ASSOCCHANGED
+        /// Similar to SHCNE_ASSOCCHANGED
         /// </summary>
         AssocChanged =          1 << 7,
 
         /// <summary>
-        /// SHCNE_UPDATEIMAGE
+        /// Similar to SHCNE_UPDATEIMAGE
         /// </summary>
         SystemImageListChanged = 1 << 8,
 
         /// <summary>
-        /// SHCNE_EXTENDED_EVENT
+        /// Similar to SHCNE_EXTENDED_EVENT
         /// </summary>
         ExtendedEvents =        1 << 9,
 
         /// <summary>
-        /// SHCNE_DISKEVENTS = SHCNE_RENAMEITEM | SHCNE_CREATE | SHCNE_DELETE 
+        /// Similar to SHCNE_DISKEVENTS = SHCNE_RENAMEITEM | SHCNE_CREATE | SHCNE_DELETE 
         ///     | SHCNE_MKDIR | SHCNE_RMDIR | SHCNE_ATTRIBUTES | SHCNE_UPDATEDIR | SHCNE_UPDATEITEM | SHCNE_RENAMEFOLDER
         /// </summary>
         DiskEvents = ItemEvents | FolderEvents | ItemAttributesChanged,
 
         /// <summary>
+        /// Similar to 
         /// SHCNE_GLOBALEVENTS = SHCNE_MEDIAINSERTED | SHCNE_MEDIAREMOVED | SHCNE_DRIVEREMOVED | SHCNE_DRIVEADD
         ///     | SHCNE_UPDATEIMAGE | SHCNE_DRIVEADDGUI | SHCNE_FREESPACE | SHCNE_EXTENDED_EVENT | SHCNE_ASSOCCHANGED
+        /// Events that dont match pidls first
         /// </summary>
         GlobalEvents = DriveEvents | FreespaceChanged | AssocChanged | SystemImageListChanged | ExtendedEvents,
 
         /// <summary>
-        /// SHCNE_ALLEVENTS
+        /// Similar to SHCNE_ALLEVENTS.
+        /// All events have occurred.
         /// </summary>
         AllEvents =             1 << 31
     }

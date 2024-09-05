@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 using ShellSpy.Common.Interop;
 
@@ -8,12 +10,30 @@ namespace ShellSpy.Common
     {
         public static string GetDriveByNum(int driveNum)
         {
-            // buffer for 5 chars: for 4 letters "C:\" + '\0'
-            StringBuilder builder = new StringBuilder(5);
+            // buffer for 4 characters "C:\" + '\0'
+            IntPtr pszPath = Marshal.AllocHGlobal(4);
+            try
+            {
+                Shlwapi.PathBuildRootW(pszPath, driveNum);
 
-            Shlwapi.PathBuildRoot(builder, driveNum);
+                int lastError = Marshal.GetLastWin32Error();
+                if (lastError != 0)
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
 
-            return builder.ToString();
+                string? result = Marshal.PtrToStringUni(pszPath);
+                if (result == null)
+                {
+                    throw new InvalidOperationException("Unexpected empty drive path");
+                }
+
+                return result;
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(pszPath);
+            }
         }
     }
 }

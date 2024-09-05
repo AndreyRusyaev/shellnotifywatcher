@@ -169,7 +169,7 @@ namespace ShellSpy
             MessageLoop.Run(cancellationToken);
         }
 
-        private void OnShellChanged(object sender, ShellChangeNotifyEventArgs eventArgs)
+        private void OnShellChanged(object? sender, ShellChangeNotifyEventArgs eventArgs)
         {
             OnShellChanged(eventArgs.Event, eventArgs.Pidl1, eventArgs.Pidl2);
         }
