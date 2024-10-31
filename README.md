@@ -2,6 +2,9 @@
 
 Managed C# wrapper for SHChangeNotify and SHCNE_ events.
 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/shellnotifywatcher)](https://www.nuget.org/packages/shellnotifywatcher)
+[![NuGet Version](https://img.shields.io/nuget/v/shellnotifywatcher)](https://www.nuget.org/packages/shellnotifywatcher)
+
 ```cs
 using ShellNotifyWatcher watcher = new ShellNotifyWatcher
 {
