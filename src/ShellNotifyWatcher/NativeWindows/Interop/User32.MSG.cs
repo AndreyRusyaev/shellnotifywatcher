@@ -1,26 +1,24 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
-namespace ShellSpy.NativeWindows.Interop
+namespace ShellSpy.NativeWindows.Interop;
+
+internal static partial class User32
 {
-    internal static partial class User32
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MSG
     {
-        [StructLayout(LayoutKind.Sequential)]
-        public struct MSG
-        {
-            public IntPtr hwnd;
+        public IntPtr hwnd;
 
-            public int message;
+        public int message;
 
-            public IntPtr wParam;
+        public IntPtr wParam;
 
-            public IntPtr lParam;
+        public IntPtr lParam;
 
-            public int time;
+        public int time;
 
-            public POINT pt;
+        public POINT pt;
 
-            public int lPrivate;
-        }
+        public int lPrivate;
     }
 }

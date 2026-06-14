@@ -1,4 +1,4 @@
-msbuild "../src/shellnotifywatcher.sln" /p:Configuration=Release
+dotnet build "../src/shellnotifywatcher.sln" -c release
 
 SET OutDir=../src/shellnotifywatcher/bin/Release/
 SET TargetDir=../bin/

@@ -1,8 +1,7 @@
-﻿namespace ShellSpy
+﻿namespace ShellSpy;
+
+public enum ShareStatus
 {
-    public enum ShareStatus
-    {
-        Shared,
-        Unshared
-    }
+    Shared,
+    Unshared
 }

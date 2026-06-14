@@ -1,12 +1,6 @@
-﻿namespace ShellSpy
-{
-    public sealed class SystemImageListChangedEventArgs : ShellNotifyEventArgs
-    {
-        public SystemImageListChangedEventArgs(int imageIndex)
-        {
-            ImageIndex = imageIndex;
-        }
+﻿namespace ShellSpy;
 
-        public int ImageIndex { get; }
-    }
+public sealed class SystemImageListChangedEventArgs(int imageIndex) : ShellNotifyEventArgs
+{
+    public int ImageIndex { get; } = imageIndex;
 }

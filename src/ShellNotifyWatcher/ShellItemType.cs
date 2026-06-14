@@ -1,8 +1,7 @@
-﻿namespace ShellSpy
+﻿namespace ShellSpy;
+
+public enum ShellItemType
 {
-    public enum ShellItemType
-    {
-        Item,
-        Directory
-    }
+    Item,
+    Directory
 }

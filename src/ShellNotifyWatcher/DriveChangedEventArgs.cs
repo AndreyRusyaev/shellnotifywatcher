@@ -1,17 +1,10 @@
 ﻿using ShellSpy.Common;
 
-namespace ShellSpy
+namespace ShellSpy;
+
+public sealed class DriveChangedEventArgs(ItemIdList itemIdList, DriveChangeType driveChangeType) : ShellNotifyEventArgs
 {
-    public sealed class DriveChangedEventArgs : ShellNotifyEventArgs
-    {
-        public DriveChangedEventArgs(ItemIdList itemIdList, DriveChangeType driveChangeType)
-        {
-            Path = itemIdList;
-            ChangeType = driveChangeType;
-        }
+    public DriveChangeType ChangeType { get; } = driveChangeType;
 
-        public DriveChangeType ChangeType { get; }
-
-        public ItemIdList Path { get; }
-    }
+    public ItemIdList Path { get; } = itemIdList;
 }

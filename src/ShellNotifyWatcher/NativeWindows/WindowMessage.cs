@@ -1,23 +1,12 @@
-﻿using System;
+﻿namespace ShellSpy.NativeWindows;
 
-namespace ShellSpy.NativeWindows
+internal readonly struct WindowMessage(IntPtr handle, int messageId, IntPtr wParam, IntPtr lParam)
 {
-    internal readonly struct WindowMessage
-    {
-        public WindowMessage(IntPtr handle, int messageId, IntPtr wParam, IntPtr lParam)
-        {
-            WindowHandle = handle;
-            Id = messageId;
-            WParam = wParam;
-            LParam = lParam;
-        }
+    public IntPtr WindowHandle { get; } = handle;
 
-        public IntPtr WindowHandle { get; }
+    public int Id { get; } = messageId;
 
-        public int Id { get; }
+    public IntPtr WParam { get; } = wParam;
 
-        public IntPtr WParam { get; }
-
-        public IntPtr LParam { get; }
-    }
+    public IntPtr LParam { get; } = lParam;
 }

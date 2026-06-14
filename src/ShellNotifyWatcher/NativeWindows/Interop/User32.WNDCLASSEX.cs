@@ -1,39 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
-namespace ShellSpy.NativeWindows.Interop
+namespace ShellSpy.NativeWindows.Interop;
+
+internal static partial class User32
 {
-    internal static partial class User32
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct WNDCLASSEX
     {
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct WNDCLASSEX
-        {
-            public int cbSize;
+        public int cbSize;
 
-            public int style;
+        public int style;
 
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public WNDPROC lpfnWndProc;
+        [MarshalAs(UnmanagedType.FunctionPtr)]
+        public WNDPROC lpfnWndProc;
 
-            public int cbClsExtra;
+        public int cbClsExtra;
 
-            public int cbWndExtra;
+        public int cbWndExtra;
 
-            public IntPtr hInstance;
+        public IntPtr hInstance;
 
-            public IntPtr hIcon;
+        public IntPtr hIcon;
 
-            public IntPtr hCursor;
+        public IntPtr hCursor;
 
-            public IntPtr hbrBackground;
+        public IntPtr hbrBackground;
 
-            public string lpszMenuName;
+        public string lpszMenuName;
 
-            public string lpszClassName;
+        public string lpszClassName;
 
-            public IntPtr hIconSm;
-        }
+        public IntPtr hIconSm;
     }
 }

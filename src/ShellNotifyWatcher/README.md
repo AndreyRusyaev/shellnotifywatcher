@@ -1,10 +1,11 @@
-﻿using ShellSpy;
+# Shell Notifications Watcher
 
-string? sourcePath = args.Length > 0 ? args[0] : Environment.GetEnvironmentVariable("SYSTEMDRIVE");
+Managed C# wrapper for SHChangeNotify and SHCNE_ events.
 
+```cs
 using var watcher = new ShellNotifyWatcher
 {
-    Path = sourcePath,
+    Path = "C:\\",
     Recursive = true,
     IncludeShellNotifications = true,
     EventFilters = ShellEventFilters.AllEvents
@@ -42,3 +43,4 @@ while (true)
     }
     Console.WriteLine();
 }
+```

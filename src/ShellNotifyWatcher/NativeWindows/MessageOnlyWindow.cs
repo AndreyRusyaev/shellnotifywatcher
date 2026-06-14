@@ -1,12 +1,7 @@
 ﻿using ShellSpy.NativeWindows.Interop;
 
-namespace ShellSpy.NativeWindows
+namespace ShellSpy.NativeWindows;
+
+internal class MessageOnlyWindow(string windowName) : NativeWindow(User32.HWND_MESSAGE, windowName)
 {
-    internal class MessageOnlyWindow : NativeWindow
-    {
-        public MessageOnlyWindow(string windowName) 
-            : base(User32.HWND_MESSAGE, windowName)
-        {
-        }
-    }
 }

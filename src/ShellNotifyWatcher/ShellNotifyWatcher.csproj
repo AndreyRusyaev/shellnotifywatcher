@@ -1,18 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0-windows;net8.0-windows</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0-windows;net8.0-windows;net10.0-windows</TargetFrameworks>
         <RootNamespace>ShellSpy</RootNamespace>
         <AssemblyName>ShellNotifyWatcher</AssemblyName>
-        <Version>2.0.0</Version>
-        <LangVersion>Latest</LangVersion>
         <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <Version>2.0.0</Version>
         <Description>Implements shell notifications watcher (SHChangeNotify &amp; SHCNE_ events).</Description>
         <Copyright>Andrey Rusyaev</Copyright>
         <Authors>Andrey Rusyaev</Authors>
         <RepositoryUrl>https://github.com/AndreyRusyaev/shellnotifywatcher</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>windows win32 shell shchangenotify events</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/ChangeLog.txt"))</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
@@ -20,4 +24,11 @@
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
       <WarningsAsErrors />
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 </Project>

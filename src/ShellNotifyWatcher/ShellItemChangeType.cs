@@ -1,12 +1,11 @@
-﻿namespace ShellSpy
-{
-    public enum ShellItemChangeType
-    {
-        Created,
-        Updated,
-        Deleted,
-        Renamed,
+﻿namespace ShellSpy;
 
-        AttributesUpdated,
-    }
+public enum ShellItemChangeType
+{
+    Created,
+    Updated,
+    Deleted,
+    Renamed,
+
+    AttributesUpdated,
 }
