@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ShellSpy.Extensions;
+﻿namespace ShellSpy.Extensions;
 
 internal static class EnumExtensions
 {

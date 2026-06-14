@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShellSpy.NativeWindows.Interop;
+﻿namespace ShellSpy.NativeWindows.Interop;
 
 internal static partial class User32
 {

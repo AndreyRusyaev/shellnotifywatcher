@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShellSpy.ChangeNotify.Interop;
+﻿namespace ShellSpy.ChangeNotify.Interop;
 
 internal static partial class Shell32
 {

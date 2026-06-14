@@ -2,20 +2,13 @@
 
 namespace ShellSpy;
 
-public sealed class ShellItemRenamedEventArgs : ShellNotifyEventArgs
+public sealed class ShellItemRenamedEventArgs(ShellItemType itemType, ItemIdList oldItemIdList, ItemIdList newItemIdList) : ShellNotifyEventArgs
 {
-    public ShellItemRenamedEventArgs(ShellItemType itemType, ItemIdList oldItemIdList, ItemIdList newItemIdList)
-    {
-        ItemType = itemType;
-        OldPath = oldItemIdList;
-        NewPath = newItemIdList;
-    }
-
     public ShellItemChangeType ChangeType { get; } = ShellItemChangeType.Renamed;
 
-    public ShellItemType ItemType { get; }
+    public ShellItemType ItemType { get; } = itemType;
 
-    public ItemIdList OldPath { get; }
+    public ItemIdList OldPath { get; } = oldItemIdList;
 
-    public ItemIdList NewPath { get; }
+    public ItemIdList NewPath { get; } = newItemIdList;
 }

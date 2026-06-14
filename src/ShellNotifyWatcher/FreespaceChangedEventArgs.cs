@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using ShellSpy.Common;
+﻿using ShellSpy.Common;
 
 namespace ShellSpy;
 
@@ -8,8 +6,8 @@ public sealed class FreespaceChangedEventArgs : ShellNotifyEventArgs
 {
     private const int MaxDriveNum = 25;
 
-    private readonly List<int> driveNums = new List<int>();
-    private readonly List<string> driveRoots = new List<string>();
+    private readonly List<int> driveNums = [];
+    private readonly List<string> driveRoots = [];
 
     public FreespaceChangedEventArgs(int driveMask)
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShellSpy;
+﻿namespace ShellSpy;
 
 public class ShellNotifyEventArgs : EventArgs
 {

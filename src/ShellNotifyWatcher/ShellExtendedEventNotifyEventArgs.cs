@@ -1,11 +1,6 @@
 ﻿namespace ShellSpy;
 
-public sealed class ShellExtendedEventNotifyEventArgs : ShellNotifyEventArgs
+public sealed class ShellExtendedEventNotifyEventArgs(ShellExtendedEventType eventId) : ShellNotifyEventArgs
 {
-    public ShellExtendedEventNotifyEventArgs(ShellExtendedEventType eventId)
-    {
-        EventId = eventId;
-    }
-
-    public ShellExtendedEventType EventId { get; }
+    public ShellExtendedEventType EventId { get; } = eventId;
 }
