@@ -1,4 +1,6 @@
-﻿string? sourcePath = args.Length > 0 ? args[0] : Environment.GetEnvironmentVariable("SYSTEMDRIVE");
+﻿using ShellSpy;
+
+string? sourcePath = args.Length > 0 ? args[0] : Environment.GetEnvironmentVariable("SYSTEMDRIVE");
 
 using var watcher = new ShellNotifyWatcher
 {
