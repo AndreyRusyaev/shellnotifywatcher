@@ -4,36 +4,35 @@ using System.Runtime.InteropServices;
 
 using ShellSpy.Common.Interop;
 
-namespace ShellSpy.Common
+namespace ShellSpy.Common;
+
+internal class DriveRoot
 {
-    internal class DriveRoot
+    public static string GetDriveByNum(int driveNum)
     {
-        public static string GetDriveByNum(int driveNum)
+        // buffer for 4 characters "C:\" + '\0'
+        IntPtr pszPath = Marshal.AllocHGlobal(4);
+        try
         {
-            // buffer for 4 characters "C:\" + '\0'
-            IntPtr pszPath = Marshal.AllocHGlobal(4);
-            try
+            Shlwapi.PathBuildRootW(pszPath, driveNum);
+
+            int lastError = Marshal.GetLastWin32Error();
+            if (lastError != 0)
             {
-                Shlwapi.PathBuildRootW(pszPath, driveNum);
-
-                int lastError = Marshal.GetLastWin32Error();
-                if (lastError != 0)
-                {
-                    throw new Win32Exception(Marshal.GetLastWin32Error());
-                }
-
-                string? result = Marshal.PtrToStringUni(pszPath);
-                if (result == null)
-                {
-                    throw new InvalidOperationException("Unexpected empty drive path");
-                }
-
-                return result;
+                throw new Win32Exception(Marshal.GetLastWin32Error());
             }
-            finally
+
+            string? result = Marshal.PtrToStringUni(pszPath);
+            if (result == null)
             {
-                Marshal.FreeHGlobal(pszPath);
+                throw new InvalidOperationException("Unexpected empty drive path");
             }
+
+            return result;
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pszPath);
         }
     }
 }

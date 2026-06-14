@@ -1,11 +1,10 @@
-﻿namespace ShellSpy
-{
-    public enum DriveChangeType
-    {
-        DriveAdded,
-        DriveRemoved,
+﻿namespace ShellSpy;
 
-        MediaInserted,
-        MediaRemoved,
-    }
+public enum DriveChangeType
+{
+    DriveAdded,
+    DriveRemoved,
+
+    MediaInserted,
+    MediaRemoved,
 }

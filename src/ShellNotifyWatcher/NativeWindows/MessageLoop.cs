@@ -5,72 +5,71 @@ using System.Threading;
 
 using ShellSpy.NativeWindows.Interop;
 
-namespace ShellSpy.NativeWindows
+namespace ShellSpy.NativeWindows;
+
+internal sealed class MessageLoop : IDisposable
 {
-    internal sealed class MessageLoop : IDisposable
+    private readonly CancellationToken cancellationToken;
+
+    private readonly CancellationTokenRegistration cancellationTokenRegistration;
+
+    private readonly AutoResetEvent stopHandle = new AutoResetEvent(false);
+
+    private int threadId;
+
+    private MessageLoop(CancellationToken cancellationToken)
     {
-        private readonly CancellationToken cancellationToken;
+        this.cancellationToken = cancellationToken;
 
-        private readonly CancellationTokenRegistration cancellationTokenRegistration;
+        cancellationTokenRegistration = this.cancellationToken.Register(Stop);
+    }
 
-        private readonly AutoResetEvent stopHandle = new AutoResetEvent(false);
+    public static void Run(CancellationToken cancellationToken)
+    {
+        using MessageLoop messageLoop = new MessageLoop(cancellationToken);
+        messageLoop.Run();
+    }
 
-        private int threadId;
+    private void Run()
+    {
+        threadId = Kerne32.GetCurrentThreadId();
 
-        private MessageLoop(CancellationToken cancellationToken)
+        User32.MSG msg = new User32.MSG();
+
+        while (true)
         {
-            this.cancellationToken = cancellationToken;
-
-            cancellationTokenRegistration = this.cancellationToken.Register(Stop);
-        }
-
-        public static void Run(CancellationToken cancellationToken)
-        {
-            using MessageLoop messageLoop = new MessageLoop(cancellationToken);
-            messageLoop.Run();
-        }
-
-        private void Run()
-        {
-            threadId = Kerne32.GetCurrentThreadId();
-
-            User32.MSG msg = new User32.MSG();
-
-            while (true)
+            int result = User32.GetMessageW(ref msg, IntPtr.Zero, 0, 0);
+            if (result == 0)
             {
-                int result = User32.GetMessageW(ref msg, IntPtr.Zero, 0, 0);
-                if (result == 0)
-                {
-                    // Received WM_QUIT
-                    break;
-                }
-
-                if (result == -1)
-                {
-                    throw new Win32Exception(Marshal.GetLastWin32Error());
-                }
-                else
-                {
-                    User32.DispatchMessageW(ref msg);
-                }
+                // Received WM_QUIT
+                break;
             }
 
-            stopHandle.Set();
-        }
-
-        private void Stop()
-        {
-            if (!User32.PostThreadMessageW(threadId, (int) WindowMessages.WM_QUIT, new IntPtr(0), IntPtr.Zero))
+            if (result == -1)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
-
-            stopHandle.WaitOne();
+            else
+            {
+                User32.DispatchMessageW(ref msg);
+            }
         }
 
-        public void Dispose()
+        stopHandle.Set();
+    }
+
+    private void Stop()
+    {
+        if (!User32.PostThreadMessageW(threadId, (int) WindowMessages.WM_QUIT, new IntPtr(0), IntPtr.Zero))
         {
-            cancellationTokenRegistration.Dispose();
+            throw new Win32Exception(Marshal.GetLastWin32Error());
         }
+
+        stopHandle.WaitOne();
+    }
+
+    public void Dispose()
+    {
+        cancellationTokenRegistration.Dispose();
     }
 }

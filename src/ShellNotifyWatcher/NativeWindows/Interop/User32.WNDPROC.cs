@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace ShellSpy.NativeWindows.Interop
+namespace ShellSpy.NativeWindows.Interop;
+
+internal static partial class User32
 {
-    internal static partial class User32
-    {
-        public delegate IntPtr WNDPROC(IntPtr hwnd, int uMsg, IntPtr wParam, IntPtr lParam);
-    }
+    public delegate IntPtr WNDPROC(IntPtr hwnd, int uMsg, IntPtr wParam, IntPtr lParam);
 }

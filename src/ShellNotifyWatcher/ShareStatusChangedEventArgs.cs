@@ -1,17 +1,16 @@
 ﻿using ShellSpy.Common;
 
-namespace ShellSpy
+namespace ShellSpy;
+
+public sealed class ShareStatusChangedEventArgs : ShellNotifyEventArgs
 {
-    public sealed class ShareStatusChangedEventArgs : ShellNotifyEventArgs
+    public ShareStatusChangedEventArgs(ItemIdList itemIdList, ShareStatus status)
     {
-        public ShareStatusChangedEventArgs(ItemIdList itemIdList, ShareStatus status)
-        {
-            Path = itemIdList;
-            Status = status;
-        }
-
-        public ShareStatus Status { get; }
-
-        public ItemIdList Path { get; }
+        Path = itemIdList;
+        Status = status;
     }
+
+    public ShareStatus Status { get; }
+
+    public ItemIdList Path { get; }
 }
