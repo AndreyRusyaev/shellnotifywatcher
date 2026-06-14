@@ -15,6 +15,8 @@
         <RepositoryUrl>https://github.com/AndreyRusyaev/shellnotifywatcher</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>windows win32 shell shchangenotify events</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/ChangeLog.txt"))</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
@@ -22,4 +24,11 @@
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
       <WarningsAsErrors />
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Update="README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 </Project>
