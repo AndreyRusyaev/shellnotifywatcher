@@ -15,6 +15,7 @@
         <RepositoryUrl>https://github.com/AndreyRusyaev/shellnotifywatcher</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>windows win32 shell shchangenotify events</PackageTags>
+        <PackageLicenseFile>lgpl1.0.txt</PackageLicenseFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/ChangeLog.txt"))</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
