@@ -47,3 +47,29 @@ while (true)
     Console.WriteLine();
 }
 ```
+
+## Sample
+
+```
+dotnet run --project src/WatcherSample/WatcherSample.csproj
+```
+
+```sh
+Listening for shell notifications.
+Path: 'C:'
+Recursive: True
+Events: AllEvents
+Try to add/remove a file in the Windows Explorer (explorer.exe) and see what happens.
+Press 'Esc' or 'q' key to exit ...
+Created Item 'C:\Temp\New Text Document.txt'
+ExtendedEventOccurred EventId: 15
+Updated Item 'C:\Temp'
+Deleted Item 'C:\Users\User\AppData\Roaming\Microsoft\Windows\Recent\New Text Document.txt.lnk'
+Created Item 'C:\Users\User\AppData\Roaming\Microsoft\Windows\Recent\New Text Document.txt.lnk'
+Created Item 'New Text Document.txt'
+Created Item 'New Text Document.txt'
+Created Item 'New Text Document.txt'
+FreespaceChanged Drives: [C:\]
+Updated Directory 'C:\Users\User\AppData\Roaming\Microsoft\Windows\Recent'
+q
+```
